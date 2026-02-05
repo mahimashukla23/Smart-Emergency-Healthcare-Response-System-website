@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ambulance Tracking</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="card">
+  <h2>🚑 Ambulance Status</h2>
+
+  <p id="status">Assigned</p>
+
+  <div class="status" id="liveStatus">
+    Ambulance Assigned
+  </div>
+
+  <a class="link-btn" href="alert.html">Go to Hospital Alert</a>
+</div>
+
+<script>
+setTimeout(() => {
+  document.getElementById("liveStatus").innerText = "🚑 On the Way";
+}, 3000);
+
+setTimeout(() => {
+  document.getElementById("liveStatus").innerText = "🏥 Reached Hospital";
+}, 6000);
+</script>
+
+</body>
+</html>
