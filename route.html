@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ambulance Route</title>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css"/>
+  <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
+
+  <style>
+    #map{height:500px;width:95%;margin:auto;}
+    body{text-align:center;font-family:Arial;}
+  </style>
+</head>
+
+<body>
+
+<h2>🚑 Ambulance to Selected Hospital</h2>
+<div id="map" style="height:500px;"></div>
+
+<script>
+
+var hospitalLat = localStorage.getItem("hospitalLat");
+var hospitalLng = localStorage.getItem("hospitalLng");
+
+
+var map = L.map('map').setView([hospitalLat, hospitalLng], 13);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+ attribution:'OSM'
+}).addTo(map);
+
+var hospitalMarker = L.marker([hospitalLat,hospitalLng]).addTo(map)
+.bindPopup("Hospital").openPopup();
+
+navigator.geolocation.watchPosition(pos=>{
+
+  var lat = pos.coords.latitude;
+  var lng = pos.coords.longitude;
+
+  var ambulance = L.marker([lat,lng]).addTo(map)
+  .bindPopup("Ambulance");
+
+  L.Routing.control({
+      waypoints:[
+        L.latLng(lat,lng),
+        L.latLng(hospitalLat,hospitalLng)
+      ]
+  }).addTo(map);
+
+});
+
+</script>
+</body>
+</html>

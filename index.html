@@ -4,14 +4,31 @@
   <title>Emergency Request</title>
   <link rel="stylesheet" href="style.css">
 </head>
+<script>
+function goNext(){
+
+  var name = document.getElementById("name").value;
+  var location = document.getElementById("loc").value;
+
+  localStorage.setItem("patientName", name);
+  localStorage.setItem("userLocation", location);
+
+  window.location.href = "hospital.html";
+}
+
+</script>
+
 <body>
 
 <div class="container">
   <h2>🚑 Emergency Request</h2>
 
-  <form action="/send" method="POST">
+  <form onsubmit="goNext(); return false;">
+
     <label>Patient Name</label>
-    <input name="name" required>
+    <input id="name" placeholder="Patient Name">
+    <input id="loc" placeholder="Location">
+
   
 
 

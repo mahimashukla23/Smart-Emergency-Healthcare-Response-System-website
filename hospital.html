@@ -1,24 +1,51 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 <head>
-  <title>Hospital Assigned</title>
-  <link rel="stylesheet" href="style.css">
+<title>Hospital Assigned</title>
+<link rel="stylesheet" href="style.css">
 </head>
+
+<script>
+var userLoc = localStorage.getItem("userLocation");
+
+// DEMO hospital selection
+var hospitalLat;
+var hospitalLng;
+
+if(userLoc.toLowerCase().includes("bhubaneswar")){
+   hospitalLat = 20.2961;
+   hospitalLng = 85.8245;
+}else{
+   hospitalLat = 22.8046;
+   hospitalLng = 86.2029;
+}
+
+localStorage.setItem("hospitalLat", hospitalLat);
+localStorage.setItem("hospitalLng", hospitalLng);
+
+</script>
+
 <body>
+
 <div class="card">
-  <h2>🏥 Hospital Assigned</h2>
+<h2>🏥 Hospital Assigned</h2>
 
-  <p><b>Nearest Hospital:</b> City Care Hospital</p>
-  <p><b>Available Beds:</b> 3</p>
+<p><b>Nearest Hospital:</b> City Care Hospital</p>
+<p><b>Available Beds:</b> 3</p>
 
-  <div class="status">🚑 Ambulance Assigned</div>
+<div class="status">🚑 Ambulance Assigned</div>
 
-  <a class="link-btn" href="ambulance.html">
-    Track Ambulance
-  </a>
+
+<button onclick="window.location.href='route.html'">
+Track Ambulance
+</button>
+
+
+
 </div>
 
 </body>
 </html>
+
 
 
